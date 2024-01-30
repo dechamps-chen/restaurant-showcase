@@ -31,7 +31,7 @@ abstract class Controller
     public function redirectedToRoute($controller, $action)
     {
         header('HTTP/1.0 301 Moved Permanently');
-        header('Location: http://applications/projet-xbl/' . $controller . '/' . $action);
+        header('Location: http://localhost/applications/projet-xbl/' . $controller . '/' . $action);
         header('Connection: close');
         die();
     }
