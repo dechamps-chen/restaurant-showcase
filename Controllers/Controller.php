@@ -19,10 +19,12 @@ abstract class Controller
         $content = ob_get_clean();
 
         // on fabrique le template
-        if ($path !== 'houtai/index') {
-            include dirname(__DIR__) . '/Views/base.php';
-        } else {
+        if (($path == 'houtai/index') or ($path == 'houtai/login')) {
+            echo 'admin';
             include dirname(__DIR__) . '/Views/adminbase.php';
+        } else {
+            echo 'base';
+            include dirname(__DIR__) . '/Views/base.php';
         }
     }
 
