@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?></title>
-    <link href="./output.css" rel="stylesheet">
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <link href="../public/output.css" rel="stylesheet">
+
 </head>
 
 <body>
