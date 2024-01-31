@@ -5,4 +5,5 @@ RewriteRule ^$ public/index.php?controller=home&action=index [QSA,L]
 
 # Redirection pour les autres contrôleurs et actions
 RewriteRule ^([^/]+)/?$ public/index.php?controller=$1&action=index [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteRule ^([^/]+)/([^/]+)/?$ public/index.php?controller=$1&action=$2 [QSA,L]
