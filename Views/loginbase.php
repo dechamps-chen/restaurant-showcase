@@ -10,7 +10,8 @@
 
 <body>
     <div class="container">
-        <main>
+        <main class="relative">
+            <div class="hidden flex m-auto left-0 right-0 absolute bg-red-100 p-5 w-full sm:w-1/2" id="errorMessage"></div>
             <?php echo $content ?>
         </main>
 
@@ -18,6 +19,7 @@
             <p>© XBL 2024</p>
         </footer>
     </div>
+    <script src="http://localhost/applications/projet-xbl/public/script.js"></script>
 </body>
 
 </html>

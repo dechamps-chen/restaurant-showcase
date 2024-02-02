@@ -773,6 +773,30 @@ select {
   }
 }
 
+.static {
+  position: static;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.m-auto {
+  margin: auto;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -794,24 +818,36 @@ select {
   display: flex;
 }
 
-.table {
-  display: table;
+.hidden {
+  display: none;
 }
 
 .h-10 {
   height: 2.5rem;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .min-h-full {
   min-height: 100%;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-full {
   width: 100%;
 }
 
-.w-auto {
-  width: auto;
+.flex-none {
+  flex: none;
 }
 
 .flex-col {
@@ -828,6 +864,18 @@ select {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
@@ -849,14 +897,17 @@ select {
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
 }
 
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
 }
 
-.py-1\.5 {
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
+.fill-current {
+  fill: currentColor;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-3 {
@@ -869,21 +920,43 @@ select {
   padding-right: 1.5rem;
 }
 
-.py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
-.pl-7 {
-  padding-left: 1.75rem;
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }
 
-.pr-20 {
-  padding-right: 5rem;
+.py-14 {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 .text-center {
   text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-3xl {
@@ -894,11 +967,6 @@ select {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .font-bold {
@@ -921,6 +989,10 @@ select {
   line-height: 2.25rem;
 }
 
+.leading-tight {
+  line-height: 1.25;
+}
+
 .tracking-tight {
   letter-spacing: -0.025em;
 }
@@ -930,14 +1002,14 @@ select {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-.text-gray-500 {
+.text-red-500 {
   --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
-.text-indigo-600 {
+.text-red-700 {
   --tw-text-opacity: 1;
-  color: rgb(79 70 229 / var(--tw-text-opacity));
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -970,16 +1042,6 @@ select {
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
 }
 
-.ring-gray-900 {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(17 24 39 / var(--tw-ring-opacity));
-}
-
-.ring-gray-100 {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(243 244 246 / var(--tw-ring-opacity));
-}
-
 .placeholder\:text-gray-400::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -993,11 +1055,6 @@ select {
 .hover\:bg-indigo-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
-}
-
-.hover\:text-indigo-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
 }
 
 .focus\:ring-2:focus {
@@ -1035,6 +1092,10 @@ select {
   .sm\:mx-auto {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .sm\:w-1\/2 {
+    width: 50%;
   }
 
   .sm\:w-full {

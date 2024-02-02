@@ -30,8 +30,8 @@ class HoutaiController extends Controller
     public function auth()
     {
         if (Validator::validatePost($_POST, ['name', 'password'])) {
-            $name = $_POST['name'];
-            $password = $_POST['password'];
+            $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+            $password = htmlspecialchars($_POST['password'], ENT_QUOTES);
 
             $user = new User();
             $user->setName_user($name);
@@ -43,7 +43,12 @@ class HoutaiController extends Controller
                 $_SESSION['name'] = $user->getName_user();
                 $this->redirectedToRoute('houtai', 'index');
             } else {
-                $this->render('houtai/login', ['errorMessage' => '账号或密码错误']);
+                $this->render('houtai/login');
+?>
+                <script>
+                    errorMsg('账号或密码错误');
+                </script>
+<?php
             }
         } else {
             $this->render('houtai/login', ['errorMessage' => '请输入账号和密码']);
