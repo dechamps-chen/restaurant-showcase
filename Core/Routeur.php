@@ -6,7 +6,9 @@ class Routeur
 {
     public function routes()
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $controller = (isset($_GET['controller'])) ? ucfirst(array_shift($_GET)) : 'home';
         $controller = '\\App\\Controllers\\' . $controller . 'Controller';
 
