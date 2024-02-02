@@ -43,15 +43,12 @@ class HoutaiController extends Controller
                 $_SESSION['name'] = $user->getName_user();
                 $this->redirectedToRoute('houtai', 'index');
             } else {
-                $this->render('houtai/login');
-?>
-                <script>
-                    errorMsg('账号或密码错误');
-                </script>
-<?php
+                $_SESSION['errorMessage'] = "账号或密码错误";
+                $this->redirectedToRoute('houtai', 'login');
             }
         } else {
-            $this->render('houtai/login', ['errorMessage' => '请输入账号和密码']);
+            $_SESSION['errorMessage'] = "请输入账号和密码";
+            $this->redirectedToRoute('houtai', 'login');
         }
     }
 

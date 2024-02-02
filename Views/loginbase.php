@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?></title>
     <link href="http://localhost/applications/projet-xbl/public/output.css" type="text/css" rel="stylesheet">
+    <script src="http://localhost/applications/projet-xbl/public/script.js"></script>
 </head>
 
 <body>
@@ -19,7 +20,6 @@
             <p>© XBL 2024</p>
         </footer>
     </div>
-    <script src="http://localhost/applications/projet-xbl/public/script.js"></script>
 </body>
 
 </html>
