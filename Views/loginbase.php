@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mx-auto">
         <main class="relative">
             <div class="hidden flex m-auto left-0 right-0 absolute bg-red-100 p-5 w-full sm:w-1/2" id="errorMessage"></div>
             <?php echo $content ?>
