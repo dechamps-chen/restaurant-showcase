@@ -2,15 +2,6 @@
 
 $title = "登录";
 
-
-if (isset($_SESSION['errorMessage'])) {
-?>
-    <script>
-        errorMsg(<?php echo json_encode($_SESSION['errorMessage']) ?>);
-    </script>
-<?php
-    unset($_SESSION['errorMessage']);
-}
 ?>
 
 <div class="static flex min-h-full flex-col justify-center px-6 py-24 lg:px-8">

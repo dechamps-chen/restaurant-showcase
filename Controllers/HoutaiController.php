@@ -22,6 +22,14 @@ class HoutaiController extends Controller
     {
         if (!isset($_SESSION['name'])) {
             $this->render('houtai/login');
+            if (isset($_SESSION['errorMessage'])) {
+?>
+                <script>
+                    errorMsg(<?= json_encode($_SESSION['errorMessage']) ?>);
+                </script>
+<?php
+                unset($_SESSION['errorMessage']);
+            }
         } else {
             $this->redirectedToRoute('houtai', 'index');
         }
