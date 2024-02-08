@@ -1,8 +1,8 @@
 <?php
 
-$title = "主页 - 后台界面";
+$title = "菜单 - 后台界面";
 
 ?>
 
-<p>后台界面</p>
+<p>菜单</p>
 <a href="http://localhost/applications/projet-xbl/houtai/logout"><button>注销</button></a>
