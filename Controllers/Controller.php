@@ -26,6 +26,9 @@ abstract class Controller
             case 'houtai/login':
                 include dirname(__DIR__) . '/Views/loginbase.php';
                 break;
+            case 'houtai/menu':
+                include dirname(__DIR__) . '/Views/adminbase.php';
+                break;
             case 'error/index':
                 include dirname(__DIR__) . '/Views/errorbase.php';
                 break;

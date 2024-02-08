@@ -65,4 +65,13 @@ class HoutaiController extends Controller
         session_destroy();
         $this->redirectedToRoute('houtai', 'login');
     }
+
+    public function menu()
+    {
+        if (isset($_SESSION['name'])) {
+            $this->render('houtai/menu');
+        } else {
+            $this->redirectedToRoute('houtai', 'login');
+        }
+    }
 }
