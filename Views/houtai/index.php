@@ -4,5 +4,6 @@ $title = "主页 - 后台界面";
 
 ?>
 
-<p>后台界面</p>
-<a href="http://localhost/applications/projet-xbl/houtai/logout"><button>注销</button></a>
+<div class="mx-auto container">
+    <h1 class="text-3xl font-bold">主页</h1>
+</div>
