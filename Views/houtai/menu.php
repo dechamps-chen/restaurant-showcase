@@ -84,4 +84,32 @@ $title = "菜单 - 后台界面";
    </form>
 </div>
 
+<ul id="list_category" class="mx-4 divide-y divide-gray-200 bg-white">
+   <?php
+   foreach ($data['category'] as $key => $category) {
+   ?>
+      <li class="pb-2 sm:pb-4">
+         <div class="flex relative items-center space-x-4 rtl:space-x-reverse">
+            <div class="handle w-8 h-8">
+               =
+            </div>
+            <div>
+               <h4 class="text-sm font-medium text-gray-900">
+                  <?php echo $category->name_category ?>
+               </h4>
+               <?php
+               if (!empty($category->description_category)) {
+               ?>
+                  <p class="text-xs"><?php echo $category->description_category ?></p>
+               <?php
+               }
+               ?>
+            </div>
+            <div class="absolute right-0">⬇</div>
+         </div>
+      </li>
+   <?php
+   }
+   ?>
+</ul>
 <?php var_dump($data['category']) ?>
