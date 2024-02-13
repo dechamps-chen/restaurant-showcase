@@ -7,6 +7,7 @@ class Category
     private $id_category;
     private $name_category;
     private $description_category;
+    private $order_category;
 
     /**
      * Get the value of id_category
@@ -64,6 +65,26 @@ class Category
     public function setDescription_category($description_category)
     {
         $this->description_category = $description_category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of order_category
+     */
+    public function getOrder_category()
+    {
+        return $this->order_category;
+    }
+
+    /**
+     * Set the value of order_category
+     *
+     * @return  self
+     */
+    public function setOrder_category($order_category)
+    {
+        $this->order_category = $order_category;
 
         return $this;
     }
