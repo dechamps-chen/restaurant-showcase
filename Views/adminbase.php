@@ -80,7 +80,9 @@
         </aside>
 
         <div class="mt-2 p-4 sm:ml-64">
-            <?php echo $content ?>
+            <div class="bg-red-100 overflow-auto">
+                <?php echo $content ?>
+            </div>
         </div>
     </main>
 
