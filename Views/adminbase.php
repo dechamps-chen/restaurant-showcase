@@ -84,7 +84,7 @@
         </div>
     </main>
 
-    <footer class="text-center bottom-0 left-0 right-0 fixed">
+    <footer class="text-center">
         <p>© XBL 2024</p>
     </footer>
     <script src="http://localhost/applications/projet-xbl/node_modules/flowbite/dist/flowbite.min.js"></script>
