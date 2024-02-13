@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?></title>
+    <link href="http://localhost/applications/projet-xbl/public/styles.css" type="text/css" rel="stylesheet">
     <link href="http://localhost/applications/projet-xbl/public/output.css" type="text/css" rel="stylesheet">
 </head>
 
@@ -90,6 +91,8 @@
         <p>© XBL 2024</p>
     </footer>
     <script src="http://localhost/applications/projet-xbl/node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="http://localhost/applications/projet-xbl/public/sortable.js"></script>
 </body>
 
 </html>
