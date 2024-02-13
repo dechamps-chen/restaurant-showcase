@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Core\Validator;
 use App\Entities\User;
+use App\Entities\Category;
 use App\Models\UserModel;
+use App\Models\CategoryModel;
 
 class HoutaiController extends Controller
 {
@@ -69,7 +71,32 @@ class HoutaiController extends Controller
     public function menu()
     {
         if (isset($_SESSION['name'])) {
-            $this->render('houtai/menu');
+            $categoryModel = new CategoryModel();
+            $category = $categoryModel->getCategory();
+            $data = ['category' => $category];
+            $this->render('houtai/menu', $data);
+        } else {
+            $this->redirectedToRoute('houtai', 'login');
+        }
+    }
+    public function addCategory()
+    {
+        if (isset($_SESSION['name'])) {
+            if (Validator::validatePost($_POST, ['name'])) {
+                $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+                $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
+                $order = htmlspecialchars($_POST['order'], ENT_QUOTES);
+
+                $category = new Category();
+                $category->setName_category($name);
+                $category->setDescription_category($description);
+                $category->setOrder_category($order);
+
+                $categoryModel = new CategoryModel();
+                $categoryModel->addCategory($category);
+            }
+            var_dump($_POST);
+            // $this->redirectedToRoute('houtai', 'menu');
         } else {
             $this->redirectedToRoute('houtai', 'login');
         }
