@@ -11,8 +11,8 @@
 
 <body>
     <header>
-        <nav class="bg-gray-800 fixed w-full">
-            <div class="w-full px-2 sm:px-6 lg:px-8">
+        <nav class="fixed z-50 bg-gray-800 w-full">
+            <div class="relative w-full px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
                     <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                         <!-- Mobile menu button-->
@@ -90,6 +90,7 @@
     <footer class="text-center">
         <p>© XBL 2024</p>
     </footer>
+    <script src="https://kit.fontawesome.com/841ce7d4f6.js" crossorigin="anonymous"></script>
     <script src="http://localhost/applications/projet-xbl/node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="http://localhost/applications/projet-xbl/public/sortable.js"></script>
