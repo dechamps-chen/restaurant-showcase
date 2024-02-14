@@ -28,4 +28,16 @@ class CategoryModel extends Dbconnect
         $list = $result->fetchAll();
         return $list;
     }
+    public function editCategory(Category $category)
+    {
+        try {
+            $requete = $this->connection->prepare("UPDATE category SET name_category=:name_category,description_category=:description_category WHERE id_category=:id_category");
+            $requete->bindValue(':id_category', $category->getId_category());
+            $requete->bindValue(':name_category', $category->getName_category());
+            $requete->bindValue(':description_category', $category->getDescription_category());
+            $requete->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 }

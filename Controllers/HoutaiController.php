@@ -95,6 +95,37 @@ class HoutaiController extends Controller
                 $categoryModel = new CategoryModel();
                 $categoryModel->addCategory($category);
             }
+            $this->redirectedToRoute('houtai', 'menu');
+        } else {
+            $this->redirectedToRoute('houtai', 'login');
+        }
+    }
+    public function editCategory()
+    {
+        if (isset($_SESSION['name'])) {
+            if (Validator::validatePost($_POST, ['name'])) {
+                $id = htmlspecialchars($_POST['id'], ENT_QUOTES);
+                $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+                $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
+                $order = htmlspecialchars($_POST['order'], ENT_QUOTES);
+
+                $category = new Category();
+                $category->setId_category($id);
+                $category->setName_category($name);
+                $category->setDescription_category($description);
+                $category->setOrder_category($order);
+
+                $categoryModel = new CategoryModel();
+                $categoryModel->editCategory($category);
+            }
+            $this->redirectedToRoute('houtai', 'menu');
+        } else {
+            $this->redirectedToRoute('houtai', 'login');
+        }
+    }
+    public function orderMenu()
+    {
+        if (isset($_SESSION['name'])) {
             var_dump($_POST);
             // $this->redirectedToRoute('houtai', 'menu');
         } else {
