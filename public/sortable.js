@@ -20,7 +20,7 @@ function edit_category(id_category, name_category, description_category) {
 }
 
 save_order.addEventListener('click', () => {
-    order_category = document.querySelectorAll("#list_category li");
+    order_category = document.querySelectorAll("#list_category li.categorylist");
     id = []
     order_category.forEach(category => {
         id.push(category.id.match(/\d+/)[0]);

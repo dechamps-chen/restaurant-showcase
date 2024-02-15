@@ -121,7 +121,7 @@ $title = "菜单 - 后台界面";
    <?php
    foreach ($data['category'] as $key_category => $category) {
    ?>
-      <li id="'li-category-'<?php echo $category->id_category ?>" class="pb-2 sm:py-2">
+      <li id="'li-category-'<?php echo $category->id_category ?>" class="categorylist pb-2 sm:py-2">
          <div class="relative flex items-center space-x-4 rtl:space-x-reverse cursor-pointer">
             <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                <i class="fa-solid fa-equals"></i>
