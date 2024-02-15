@@ -40,4 +40,15 @@ class CategoryModel extends Dbconnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+    public function orderCategory(Category $category)
+    {
+        try {
+            $requete = $this->connection->prepare("UPDATE category SET order_category=:order_category WHERE id_category=:id_category");
+            $requete->bindValue(':id_category', $category->getId_category());
+            $requete->bindValue(':order_category', $category->getOrder_category());
+            $requete->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 }

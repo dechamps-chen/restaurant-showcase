@@ -74,6 +74,7 @@ class HoutaiController extends Controller
             $categoryModel = new CategoryModel();
             $category = $categoryModel->getCategory();
             $data = ['category' => $category];
+            // var_dump($categoryModel->getCategory());
             $this->render('houtai/menu', $data);
         } else {
             $this->redirectedToRoute('houtai', 'login');
@@ -126,8 +127,19 @@ class HoutaiController extends Controller
     public function orderMenu()
     {
         if (isset($_SESSION['name'])) {
-            var_dump($_POST);
-            // $this->redirectedToRoute('houtai', 'menu');
+            $content = trim(file_get_contents("php://input"));
+            $decode = json_decode($content, true);
+
+            $category = new Category();
+            $categoryModel = new CategoryModel();
+            foreach ($decode['id'] as $key => $id) {
+                $category->setId_category($id);
+                $category->setOrder_category($key + 1);
+                $categoryModel->orderCategory($category);
+            }
+
+            $msg = "保存成功！";
+            echo json_encode($msg);
         } else {
             $this->redirectedToRoute('houtai', 'login');
         }

@@ -3,7 +3,7 @@
 $title = "菜单 - 后台界面";
 
 ?>
-
+<div id="msg" class="fixed block mx-auto left-0 right-0 z-40 w-full sm:mt-2 sm:w-1/6"></div>
 
 <h1 class="text-3xl font-bold">菜单</h1>
 
@@ -12,7 +12,7 @@ $title = "菜单 - 后台界面";
 
 
 <!-- button-category-add -->
-<button class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="form-category-add" data-drawer-show="form-category-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-category-add" data-drawer-hide="form-product-add">
+<button class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="form-category-add" data-drawer-show="form-category-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-category-add" data-drawer-hide="form-product-add" data-drawer-body-scrolling="true">
    添加新的类别
 </button>
 
@@ -43,7 +43,7 @@ $title = "菜单 - 后台界面";
 </div>
 
 <!-- button-product-add -->
-<button class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="form-product-add" data-drawer-show="form-product-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-product-add" data-drawer-hide="form-category-add">
+<button class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="form-product-add" data-drawer-show="form-product-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-product-add" data-drawer-hide="form-category-add" data-drawer-body-scrolling="true">
    添加新的产品
 </button>
 
@@ -103,16 +103,19 @@ $title = "菜单 - 后台界面";
       </div>
       <div class="mb-6">
          <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">类别介绍</label>
-         <textarea id="form_category_edit_description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="请填写类别介绍"></textarea>
+         <textarea id="form_category_edit_description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" placeholder="请填写类别介绍"></textarea>
       </div>
-      <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none dark:focus:ring-gray-800">
+      <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
          保存
+      </button>
+      <button type="button" class="text-white justify-center flex items-center bg-red-700 hover:bg-red-600 w-full focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
+         删除
       </button>
    </form>
 </div>
 
 <!-- ------------------- -->
-<!-- <form action="#"> -->
+<!-- <form action=" #"> -->
 
 <ul id="list_category" class="relative mx-4 divide-y divide-gray-200 bg-white">
    <?php
@@ -135,7 +138,7 @@ $title = "菜单 - 后台界面";
                }
                ?>
             </div>
-            <button type="button" class="cursor-default" onclick="edit_category(<?php echo $category->id_category ?>,'<?php echo $category->name_category ?>','<?php echo $category->description_category ?>')" data-drawer-target="form-category-edit" data-drawer-show="form-category-edit" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-category-edit" data-drawer-hide="form-category-add" data-drawer-hide="form-product-add">
+            <button type="button" class="cursor-default" onclick="edit_category(<?php echo $category->id_category ?>,'<?php echo $category->name_category ?>','<?php echo $category->description_category ?>')" data-drawer-target="form-category-edit" data-drawer-show="form-category-edit" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-category-edit" data-drawer-hide="form-category-add" data-drawer-hide="form-product-add" data-drawer-body-scrolling="true">
                <i class="fa-solid fa-gear"></i>
             </button>
             <div class="absolute text-gray-400 end-2 text-sm">
