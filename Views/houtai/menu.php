@@ -119,7 +119,7 @@ $title = "菜单 - 后台界面";
 
 <ul id="list_category" class="relative mx-4 divide-y divide-gray-200 bg-white">
    <?php
-   foreach ($data['category'] as $key => $category) {
+   foreach ($data['category'] as $key_category => $category) {
    ?>
       <li id="'li-category-'<?php echo $category->id_category ?>" class="pb-2 sm:py-2">
          <div class="relative flex items-center space-x-4 rtl:space-x-reverse cursor-pointer">
@@ -145,6 +145,25 @@ $title = "菜单 - 后台界面";
                <i class="fa-solid fa-chevron-down"></i>
             </div>
          </div>
+         <ul class="relative mx-4 divide-y divide-gray-200 bg-white">
+            <?php
+            foreach ($data['product'][$key_category] as $key => $product) {
+               if (!empty($product)) {
+            ?>
+                  <div class="relative flex items-center space-x-4 rtl:space-x-reverse cursor-pointer">
+                     <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
+                        <i class="fa-solid fa-equals"></i>
+                     </div>
+                     <li>
+                        <?php echo $product->name_product ?>
+                        <?php echo $product->price_product ?>
+                     </li>
+                  </div>
+            <?php
+               }
+            }
+            ?>
+         </ul>
       </li>
    <?php
    }
@@ -157,4 +176,4 @@ $title = "菜单 - 后台界面";
 <!-- </form> -->
 <!-- ------------ -->
 
-<?php var_dump($data['category']) ?>
+<?php var_dump($data) ?>

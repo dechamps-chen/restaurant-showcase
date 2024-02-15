@@ -7,6 +7,7 @@ use App\Entities\User;
 use App\Entities\Category;
 use App\Models\UserModel;
 use App\Models\CategoryModel;
+use App\Models\ProductModel;
 
 class HoutaiController extends Controller
 {
@@ -72,9 +73,25 @@ class HoutaiController extends Controller
     {
         if (isset($_SESSION['name'])) {
             $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategory();
-            $data = ['category' => $category];
-            // var_dump($categoryModel->getCategory());
+            $categoryData = $categoryModel->getCategory();
+
+            $category = new Category();
+            $productModel = new ProductModel();
+            $productData = [];
+            foreach ($categoryData as $key => $value) {
+                $category->setId_Category($value->id_category);
+                if (!empty($productModel->getProductByCategory($category))) {
+                    array_push($productData, $productModel->getProductByCategory($category));
+                } else {
+                    array_push($productData, []);
+                }
+            }
+
+            $data = [
+                'category' => $categoryData,
+                'product' => $productData
+            ];
+
             $this->render('houtai/menu', $data);
         } else {
             $this->redirectedToRoute('houtai', 'login');
