@@ -73,9 +73,12 @@ $title = "菜单 - 后台界面";
       <div class="mb-6">
          <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">选择产品类别</label>
          <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
-            <option selected value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <?php
+            foreach ($data['category'] as $key => $category) {
+            ?><option value="<?php echo $category->id_category ?>"><?php echo $category->name_category ?></option>
+            <?php
+            }
+            ?>
          </select>
       </div>
       <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
@@ -122,7 +125,7 @@ $title = "菜单 - 后台界面";
    foreach ($data['category'] as $key_category => $category) {
    ?>
       <li id="'li-category-'<?php echo $category->id_category ?>" class="categorylist pb-2 sm:py-2">
-         <div class="relative flex items-center space-x-4 rtl:space-x-reverse cursor-pointer">
+         <div class="relative flex items-center space-x-4 cursor-pointer">
             <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                <i class="fa-solid fa-equals"></i>
             </div>
@@ -145,25 +148,43 @@ $title = "菜单 - 后台界面";
                <i class="fa-solid fa-chevron-down"></i>
             </div>
          </div>
-         <ul class="relative mx-4 divide-y divide-gray-200 bg-white">
-            <?php
+         <?php if (!empty($data['product'][$key_category])) {
+         ?>
+            <ul class="relative mx-4 divide-y divide-gray-200 bg-white border-t mt-2">
+               <?php
+            } else {
+            }
             foreach ($data['product'][$key_category] as $key => $product) {
                if (!empty($product)) {
-            ?>
-                  <div class="relative flex items-center space-x-4 rtl:space-x-reverse cursor-pointer">
-                     <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
-                        <i class="fa-solid fa-equals"></i>
+               ?>
+                  <li class="pl-4 mt-2 pt-2">
+                     <div class="relative flex items-center space-x-4 cursor-pointer">
+                        <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
+                           <i class="fa-solid fa-equals"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-200">
+                           <img src="" alt="" width="100%">
+                        </div>
+                        <h4 class="text-sm font-medium text-gray-900"><?php echo $product->name_product ?></h4>
+                        <p class="text-xs"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>
                      </div>
-                     <li>
-                        <?php echo $product->name_product ?>
-                        <?php echo $product->price_product ?>
-                     </li>
-                  </div>
-            <?php
+                  </li>
+               <?php
                }
             }
-            ?>
-         </ul>
+            if (!empty($data['product'][$key_category])) {
+               ?>
+            </ul>
+         <?php } ?>
+         <div class="border-t pt-2 mt-2 mx-4">
+            <div class="flex items-center justify-center h-10 rounded bg-gray-50 mt-2 mx-10 cursor-pointer" data-drawer-target="form-product-add" data-drawer-show="form-product-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-product-add" data-drawer-hide="form-category-add" data-drawer-body-scrolling="true" onclick="add_product(<?php echo $category->id_category ?>)">
+               <p class=" text-2xl text-gray-400">
+                  <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                  </svg>
+               </p>
+            </div>
+         </div>
       </li>
    <?php
    }
