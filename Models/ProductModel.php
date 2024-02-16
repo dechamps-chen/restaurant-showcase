@@ -4,6 +4,7 @@ namespace App\Models;
 
 use PDOException;
 use App\Core\DbConnect;
+use App\Entities\Product;
 use App\Entities\Category;
 
 class ProductModel extends Dbconnect
@@ -16,6 +17,33 @@ class ProductModel extends Dbconnect
             $requete->execute();
             $results = $requete->fetchAll();
             return $results;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
+
+    public function addProduct(Product $product, Category $category)
+    {
+        try {
+            $requete = $this->connection->prepare("INSERT INTO product (name_product, photo_product, price_product, order_product, id_category) VALUES (:name_product, :photo_product, :price_product, :order_product, :id_category)");
+            $requete->bindValue(':name_product', $product->getName_product());
+            $requete->bindValue(':photo_product', $product->getPhoto_product());
+            $requete->bindValue(':price_product', $product->getPrice_product());
+            $requete->bindValue(':order_product', $product->getOrder_product());
+            $requete->bindValue(':id_category', $category->getId_category());
+            $requete->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
+
+    public function orderProduct(Product $product)
+    {
+        try {
+            $requete = $this->connection->prepare("UPDATE product SET order_product=:order_product WHERE id_product=:id_product");
+            $requete->bindValue(':id_product', $product->getId_product());
+            $requete->bindValue(':order_product', $product->getOrder_product());
+            $requete->execute();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
         }

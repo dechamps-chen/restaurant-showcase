@@ -42,11 +42,6 @@ $title = "菜单 - 后台界面";
    </form>
 </div>
 
-<!-- button-product-add -->
-<button class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="form-product-add" data-drawer-show="form-product-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-product-add" data-drawer-hide="form-category-add" data-drawer-body-scrolling="true">
-   添加新的产品
-</button>
-
 <!-- form-product-add -->
 <div id="form-product-add" class="fixed mt-16 top-0 right-0 w-96 z-30 h-screen p-4 overflow-y-auto transition-transform translate-x-full border-l-2 bg-white w-80" tabindex="-1" aria-labelledby="drawer-right-label">
    <h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-900">添加新的产品</h5>
@@ -57,10 +52,12 @@ $title = "菜单 - 后台界面";
       <span class="sr-only">Close menu</span>
    </button>
 
-   <form class="mb-6" action="#" method="POST">
+   <form class="mb-6" action="./addProduct" method="POST">
+      <input type="hidden" id="id_category" name="id_category" value="">
+      <input type="hidden" id="order_product" name="order_product" value="">
       <div class="mb-6">
          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">图片上传</label>
-         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="file_input" type="file">
+         <input name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="file_input" type="file">
       </div>
       <div class="mb-6">
          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">产品名称</label>
@@ -68,11 +65,11 @@ $title = "菜单 - 后台界面";
       </div>
       <div class="mb-6">
          <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">产品价格</label>
-         <input type="number" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写价格" required>
+         <input type="number" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写价格" required>
       </div>
       <div class="mb-6">
          <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">选择产品类别</label>
-         <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
+         <select disabled id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
             <?php
             foreach ($data['category'] as $key => $category) {
             ?><option value="<?php echo $category->id_category ?>"><?php echo $category->name_category ?></option>
@@ -124,7 +121,7 @@ $title = "菜单 - 后台界面";
    <?php
    foreach ($data['category'] as $key_category => $category) {
    ?>
-      <li id="'li-category-'<?php echo $category->id_category ?>" class="categorylist pb-2 sm:py-2">
+      <li id="li-category-<?php echo $category->id_category ?>" class="categorylist pb-2 sm:py-2">
          <div class="relative flex items-center space-x-4 cursor-pointer">
             <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                <i class="fa-solid fa-equals"></i>
@@ -148,16 +145,12 @@ $title = "菜单 - 后台界面";
                <i class="fa-solid fa-chevron-down"></i>
             </div>
          </div>
-         <?php if (!empty($data['product'][$key_category])) {
-         ?>
-            <ul class="relative mx-4 divide-y divide-gray-200 bg-white border-t mt-2">
-               <?php
-            } else {
-            }
+         <ul id="list_product" class="relative mx-4 divide-y divide-gray-200 bg-white border-t mt-2">
+            <?php
             foreach ($data['product'][$key_category] as $key => $product) {
                if (!empty($product)) {
-               ?>
-                  <li class="pl-4 mt-2 pt-2">
+            ?>
+                  <li id="li_product_<?php echo $product->id_product ?>" class="pl-4 mt-2 pt-2 productList">
                      <div class="relative flex items-center space-x-4 cursor-pointer">
                         <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                            <i class="fa-solid fa-equals"></i>
@@ -169,21 +162,18 @@ $title = "菜单 - 后台界面";
                         <p class="text-xs"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>
                      </div>
                   </li>
-               <?php
+            <?php
                }
             }
-            if (!empty($data['product'][$key_category])) {
-               ?>
-            </ul>
-         <?php } ?>
-         <div class="border-t pt-2 mt-2 mx-4">
-            <div class="flex items-center justify-center h-10 rounded bg-gray-50 mt-2 mx-10 cursor-pointer" data-drawer-target="form-product-add" data-drawer-show="form-product-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-product-add" data-drawer-hide="form-category-add" data-drawer-body-scrolling="true" onclick="add_product(<?php echo $category->id_category ?>)">
-               <p class=" text-2xl text-gray-400">
-                  <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-                  </svg>
-               </p>
-            </div>
+
+            ?>
+         </ul>
+         <div class="flex items-center justify-center h-10 rounded bg-gray-50 mt-2 mx-10 cursor-pointer" data-drawer-target="form-product-add" data-drawer-show="form-product-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-product-add" data-drawer-hide="form-category-add" data-drawer-body-scrolling="true" onclick="add_product(<?php echo $category->id_category ?>)">
+            <p class=" text-2xl text-gray-400">
+               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+               </svg>
+            </p>
          </div>
       </li>
    <?php

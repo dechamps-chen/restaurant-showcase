@@ -5,13 +5,13 @@ namespace App\Controllers;
 use App\Core\Validator;
 use App\Entities\User;
 use App\Entities\Category;
+use App\Entities\Product;
 use App\Models\UserModel;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 
 class HoutaiController extends Controller
 {
-
     public function index()
     {
         if (isset($_SESSION['name'])) {
@@ -97,6 +97,7 @@ class HoutaiController extends Controller
             $this->redirectedToRoute('houtai', 'login');
         }
     }
+
     public function addCategory()
     {
         if (isset($_SESSION['name'])) {
@@ -118,6 +119,7 @@ class HoutaiController extends Controller
             $this->redirectedToRoute('houtai', 'login');
         }
     }
+
     public function editCategory()
     {
         if (isset($_SESSION['name'])) {
@@ -141,6 +143,34 @@ class HoutaiController extends Controller
             $this->redirectedToRoute('houtai', 'login');
         }
     }
+
+    public function addProduct()
+    {
+        if (isset($_SESSION['name'])) {
+            if (Validator::validatePost($_POST, ['name', 'price', 'id_category'])) {
+                $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+                $photo = htmlspecialchars($_POST['photo'], ENT_QUOTES);
+                $price = htmlspecialchars($_POST['price'], ENT_QUOTES);
+                $order = htmlspecialchars($_POST['order_product'], ENT_QUOTES);
+                $id_category = htmlspecialchars($_POST['id_category'], ENT_QUOTES);
+
+                $product = new Product();
+                $category = new Category();
+                $product->setName_product($name);
+                $product->setPhoto_product($photo);
+                $product->setPrice_product($price);
+                $product->setOrder_product($order);
+                $category->setId_category($id_category);
+
+                $productModel = new ProductModel();
+                $productModel->addProduct($product, $category);
+            }
+            $this->redirectedToRoute('houtai', 'menu');
+        } else {
+            $this->redirectedToRoute('houtai', 'login');
+        }
+    }
+
     public function orderMenu()
     {
         if (isset($_SESSION['name'])) {
@@ -148,11 +178,19 @@ class HoutaiController extends Controller
             $decode = json_decode($content, true);
 
             $category = new Category();
+            $product = new Product();
             $categoryModel = new CategoryModel();
-            foreach ($decode['id'] as $key => $id) {
-                $category->setId_category($id);
+            $productModel = new ProductModel();
+            foreach ($decode['data']['order_cat'] as $key => $order_cat) {
+                $category->setId_category($order_cat);
                 $category->setOrder_category($key + 1);
                 $categoryModel->orderCategory($category);
+
+                foreach ($decode['data']['order_prod'][$key] as $key2 => $order_prod) {
+                    $product->setId_product($order_prod);
+                    $product->setOrder_product($key2 + 1);
+                    $productModel->orderProduct($product);
+                }
             }
 
             $msg = "保存成功！";
