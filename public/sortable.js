@@ -88,7 +88,7 @@ function add_product() {
     id_category = event.target.parentElement.id.match(/\d+/);
     // Modifier les inputs hidden [ id_category et order_product ] du formulaire form-product-add
     form_product_add_id_cat.value = id_category
-    order_product = event.target.parentElement.querySelectorAll("#list_product li").length + 1;
+    order_product = event.target.parentElement.querySelectorAll(".list_product li").length + 1;
     form_product_add_order_product.value = order_product;
     form_product_add_select.value = id_category;
 }
@@ -96,7 +96,7 @@ function add_product() {
 // Lors d'un changement sur le select (choix de category) du formulaire form-product-add
 form_product_add_select.addEventListener('change', () => {
     // Changer l'input hidden [ order_product ]
-    order_product = list_product[form_product_add_select.value - 1].querySelectorAll("#list_product li").length + 1
+    order_product = list_product[form_product_add_select.value - 1].querySelectorAll(".list_product li").length + 1
     form_product_add_order_product.value = order_product;
 })
 
@@ -106,7 +106,7 @@ save_order.addEventListener('click', (data) => {
     order_prod = [];
     order_category = document.querySelectorAll("#list_category li.categorylist");
     order_category.forEach(category => {
-        order_product = category.querySelectorAll("#list_product li");
+        order_product = category.querySelectorAll(".list_product li");
 
         list = [];
         order_product.forEach(product => {

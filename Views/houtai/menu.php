@@ -108,12 +108,12 @@ $title = "菜单 - 后台界面";
 
 <!------------ Fin Flowbite Drawer ------------>
 
-<ul id="list_category" class="relative divide-y divide-gray-200 bg-white border-t-2 shadow-xl">
+<ul id="list_category" class="relative divide-y divide-gray-200 bg-white border-t-2 m-2 shadow-xl">
    <?php
    foreach ($data['category'] as $key_category => $category) {
    ?>
       <li id="li-category-<?php echo $category->id_category ?>" class="categorylist pb-2 sm:py-2">
-         <div id="id=li-category-heading_<?php echo $category->id_category ?>" class=" relative flex items-center space-x-4 cursor-pointer">
+         <div id="li-category-heading-<?php echo $category->id_category ?>" class=" relative flex items-center space-x-4 cursor-pointer">
             <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                <i class="fa-solid fa-equals"></i>
             </div>
@@ -134,7 +134,7 @@ $title = "菜单 - 后台界面";
                <i class="fa-solid fa-chevron-down"></i>
             </div>
          </div>
-         <ul id="list-product-<?php echo $category->id_category ?>" class="relative mx-4 divide-y divide-gray-200 bg-white border-t mt-2">
+         <ul id="list-product-<?php echo $category->id_category ?>" class="list_product relative mx-4 divide-y divide-gray-200 bg-white border-t mt-2">
             <?php
             foreach ($data['product'][$key_category] as $key => $product) {
                if (!empty($product)) {
@@ -156,19 +156,21 @@ $title = "菜单 - 后台界面";
             }
 
             ?>
+            <div class="mt-2">
+               <div class="flex items-center justify-center h-10 rounded bg-gray-50 mt-2 mx-10 cursor-pointer" aria-controls="form-product-add" onclick="add_product()">
+                  <p class="text-2xl text-gray-400">
+                     <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                     </svg>
+                  </p>
+               </div>
+            </div>
          </ul>
-         <div class="flex items-center justify-center h-10 rounded bg-gray-50 mt-2 mx-10 cursor-pointer" aria-controls="form-product-add" onclick="add_product()">
-            <p class=" text-2xl text-gray-400">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-               </svg>
-            </p>
-         </div>
       </li>
    <?php
    }
    ?>
-   <button id="btn_category_add" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 m-4 focus:outline-none" type="button" aria-controls="form-category-add">
+   <button id="btn_category_add" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 m-4 focus:outline-none" type="button" aria-controls="form-category-add">
       添加新的类别
    </button>
 </ul>

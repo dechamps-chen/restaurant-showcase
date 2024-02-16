@@ -9,8 +9,8 @@ categorylist.forEach(element => {
     id = element.id.match(/\d+/)[0];
     list = {
         id: `li-category-heading-${id}`,
-        triggerEl: document.querySelector(`.li-category-heading-${id}`),
-        targetEl: document.querySelector(`.list-product-${id}`),
+        triggerEl: document.querySelector(`#li-category-heading-${id}`),
+        targetEl: document.querySelector(`#list-product-${id}`),
         active: true
     }
     accordionItems.push(list)
@@ -19,8 +19,8 @@ categorylist.forEach(element => {
 // options with default values
 const optionsAccordion = {
     alwaysOpen: true,
-    activeClasses: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white',
-    inactiveClasses: 'text-gray-500 dark:text-gray-400',
+    activeClasses: 'text-gray-500 dark:text-gray-400',
+    inactiveClasses: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white',
 };
 
 // instance options object
