@@ -81,7 +81,7 @@
         </aside>
 
         <div class="mt-2 p-4 sm:ml-64">
-            <div class="bg-red-100 overflow-auto">
+            <div class="m-4 overflow-auto">
                 <?php echo $content ?>
             </div>
         </div>
@@ -94,6 +94,7 @@
     <script src="http://localhost/applications/projet-xbl/node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="http://localhost/applications/projet-xbl/public/sortable.js"></script>
+    <script src="http://localhost/applications/projet-xbl/public/accordion.js"></script>
 </body>
 
 </html>

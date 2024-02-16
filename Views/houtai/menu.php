@@ -5,17 +5,9 @@ $title = "菜单 - 后台界面";
 ?>
 <div id="msg" class="fixed block mx-auto left-0 right-0 z-40 w-full sm:mt-2 sm:w-1/6"></div>
 
-<h1 class="text-3xl font-bold">菜单</h1>
+<h1 class="text-3xl font-bold my-4">菜单</h1>
 
-
-<!-- Modal toggle -->
-
-
-<!-- button-category-add -->
-<button class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="form-category-add" data-drawer-show="form-category-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-category-add" data-drawer-hide="form-product-add" data-drawer-body-scrolling="true">
-   添加新的类别
-</button>
-
+<!------------ Debut Flowbite Drawer ------------>
 <!-- form-category-add -->
 <div id="form-category-add" class="fixed mt-16 top-0 right-0 w-96 z-30 h-screen p-4 overflow-y-auto transition-transform translate-x-full border-l-2 bg-white w-80" tabindex="-1" aria-labelledby="drawer-right-label">
    <h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-900">添加新的类别</h5>
@@ -69,7 +61,7 @@ $title = "菜单 - 后台界面";
       </div>
       <div class="mb-6">
          <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">选择产品类别</label>
-         <select disabled id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
+         <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
             <?php
             foreach ($data['category'] as $key => $category) {
             ?><option value="<?php echo $category->id_category ?>"><?php echo $category->name_category ?></option>
@@ -114,38 +106,35 @@ $title = "菜单 - 后台界面";
    </form>
 </div>
 
-<!-- ------------------- -->
-<!-- <form action=" #"> -->
+<!------------ Fin Flowbite Drawer ------------>
 
-<ul id="list_category" class="relative mx-4 divide-y divide-gray-200 bg-white">
+<ul id="list_category" class="relative divide-y divide-gray-200 bg-white border-t-2 shadow-xl">
    <?php
    foreach ($data['category'] as $key_category => $category) {
    ?>
       <li id="li-category-<?php echo $category->id_category ?>" class="categorylist pb-2 sm:py-2">
-         <div class="relative flex items-center space-x-4 cursor-pointer">
+         <div id="id=li-category-heading_<?php echo $category->id_category ?>" class=" relative flex items-center space-x-4 cursor-pointer">
             <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                <i class="fa-solid fa-equals"></i>
             </div>
             <div>
-               <h4 class="text-sm font-medium text-gray-900">
-                  <?php echo $category->name_category ?>
-               </h4>
+               <h4 id="name_category" class="text-sm font-medium text-gray-900"><?php echo $category->name_category ?></h4>
                <?php
                if (!empty($category->description_category)) {
                ?>
-                  <p class="text-xs"><?php echo $category->description_category ?></p>
+                  <p id="description_category" class="text-xs"><?php echo $category->description_category ?></p>
                <?php
                }
                ?>
             </div>
-            <button type="button" class="cursor-default" onclick="edit_category(<?php echo $category->id_category ?>,'<?php echo $category->name_category ?>','<?php echo $category->description_category ?>')" data-drawer-target="form-category-edit" data-drawer-show="form-category-edit" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-category-edit" data-drawer-hide="form-category-add" data-drawer-hide="form-product-add" data-drawer-body-scrolling="true">
+            <button class="btn_edit_category" type="button" class="cursor-default" onclick="edit_category()" aria-controls="form-category-edit" data-drawer-hide="form-category-add">
                <i class="fa-solid fa-gear"></i>
             </button>
             <div class="absolute text-gray-400 end-2 text-sm">
                <i class="fa-solid fa-chevron-down"></i>
             </div>
          </div>
-         <ul id="list_product" class="relative mx-4 divide-y divide-gray-200 bg-white border-t mt-2">
+         <ul id="list-product-<?php echo $category->id_category ?>" class="relative mx-4 divide-y divide-gray-200 bg-white border-t mt-2">
             <?php
             foreach ($data['product'][$key_category] as $key => $product) {
                if (!empty($product)) {
@@ -168,7 +157,7 @@ $title = "菜单 - 后台界面";
 
             ?>
          </ul>
-         <div class="flex items-center justify-center h-10 rounded bg-gray-50 mt-2 mx-10 cursor-pointer" data-drawer-target="form-product-add" data-drawer-show="form-product-add" data-drawer-placement="right" data-drawer-backdrop="false" aria-controls="form-product-add" data-drawer-hide="form-category-add" data-drawer-body-scrolling="true" onclick="add_product(<?php echo $category->id_category ?>)">
+         <div class="flex items-center justify-center h-10 rounded bg-gray-50 mt-2 mx-10 cursor-pointer" aria-controls="form-product-add" onclick="add_product()">
             <p class=" text-2xl text-gray-400">
                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
@@ -179,12 +168,12 @@ $title = "菜单 - 后台界面";
    <?php
    }
    ?>
+   <button id="btn_category_add" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 m-4 focus:outline-none" type="button" aria-controls="form-category-add">
+      添加新的类别
+   </button>
 </ul>
+
 
 <button id="save_order" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
    保存
 </button>
-<!-- </form> -->
-<!-- ------------ -->
-
-<?php var_dump($data) ?>
