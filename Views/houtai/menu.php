@@ -139,17 +139,15 @@ $title = "菜单 - 后台界面";
             foreach ($data['product'][$key_category] as $key => $product) {
                if (!empty($product)) {
             ?>
-                  <li id="li_product_<?php echo $product->id_product ?>" class="pl-4 mt-2 pt-2 productList">
-                     <div class="relative flex items-center space-x-4 cursor-pointer">
-                        <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
-                           <i class="fa-solid fa-equals"></i>
-                        </div>
-                        <div class="w-12 h-12 bg-blue-200">
-                           <img src="" alt="" width="100%">
-                        </div>
-                        <h4 class="text-sm font-medium text-gray-900"><?php echo $product->name_product ?></h4>
-                        <p class="text-xs"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>
+                  <li id="li_product_<?php echo $product->id_product ?>" class="pl-4 py-2 productList border-collapse border-t border-b relative flex items-center space-x-4 cursor-pointer hover:bg-gray-100">
+                     <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
+                        <i class="fa-solid fa-equals"></i>
                      </div>
+                     <div class="w-12 h-12 bg-blue-200">
+                        <img src="" alt="" width="100%">
+                     </div>
+                     <h4 class="text-sm font-medium text-gray-900"><?php echo $product->name_product ?></h4>
+                     <p class="text-xs"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>
                   </li>
             <?php
                }

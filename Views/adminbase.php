@@ -81,7 +81,7 @@
         </aside>
 
         <div class="mt-2 p-4 sm:ml-64">
-            <div class="m-4 overflow-auto">
+            <div class="m-0 overflow-auto sm:m-4">
                 <?php echo $content ?>
             </div>
         </div>
