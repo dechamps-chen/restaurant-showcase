@@ -19,16 +19,16 @@ $title = "菜单 - 后台界面";
    </button>
 
    <form class="mb-6" action="./addCategory" method="POST">
-      <input type="hidden" name="order" value="<?php count($data['category']) + 1 ?>">
+      <input type="hidden" name="order" value="<?php echo count($data['category']) + 1 ?>">
       <div class="mb-6">
-         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">类别名称</label>
-         <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="请填写类别名称" required>
+         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">类别名称</label>
+         <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写类别名称" required>
       </div>
       <div class="mb-6">
-         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">类别介绍</label>
-         <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="请填写类别介绍"></textarea>
+         <label for="description" class="block mb-2 text-sm font-medium text-gray-900">类别介绍</label>
+         <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500" placeholder="请填写类别介绍"></textarea>
       </div>
-      <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none dark:focus:ring-gray-800">
+      <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
          添加
       </button>
    </form>
@@ -48,20 +48,20 @@ $title = "菜单 - 后台界面";
       <input type="hidden" id="id_category" name="id_category" value="">
       <input type="hidden" id="order_product" name="order_product" value="">
       <div class="mb-6">
-         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">图片上传</label>
+         <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">图片上传</label>
          <input name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="file_input" type="file">
       </div>
       <div class="mb-6">
-         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">产品名称</label>
+         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">产品名称</label>
          <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写类别名称" required>
       </div>
       <div class="mb-6">
-         <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">产品价格</label>
-         <input type="number" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写价格" required>
+         <label for="price" class="block mb-2 text-sm font-medium text-gray-900">产品价格</label>
+         <input type="number" id="price" name="price" step="0.01" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写价格" required>
       </div>
       <div class="mb-6">
-         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">选择产品类别</label>
-         <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
+         <label for="category" class="block mb-2 text-sm font-medium text-gray-900">选择产品类别</label>
+         <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" required>
             <?php
             foreach ($data['category'] as $key => $category) {
             ?><option value="<?php echo $category->id_category ?>"><?php echo $category->name_category ?></option>
@@ -90,12 +90,56 @@ $title = "菜单 - 后台界面";
       <input type="hidden" id="form_category_edit_id" name="id">
       <input type="hidden" id="form_category_edit_order" name="order">
       <div class="mb-6">
-         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">类别名称</label>
-         <input type="text" id="form_category_edit_name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="请填写类别名称" required>
+         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">类别名称</label>
+         <input type="text" id="form_category_edit_name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写类别名称" required>
       </div>
       <div class="mb-6">
-         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">类别介绍</label>
-         <textarea id="form_category_edit_description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" placeholder="请填写类别介绍"></textarea>
+         <label for="description" class="block mb-2 text-sm font-medium text-gray-900">类别介绍</label>
+         <textarea id="form_category_edit_description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500" placeholder="请填写类别介绍"></textarea>
+      </div>
+      <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
+         保存
+      </button>
+      <button type="button" class="text-white justify-center flex items-center bg-red-700 hover:bg-red-600 w-full focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
+         删除
+      </button>
+   </form>
+</div>
+
+<!-- form-product-edit -->
+<div id="form-product-edit" class="fixed mt-16 top-0 right-0 w-96 z-30 h-screen p-4 overflow-y-auto transition-transform translate-x-full border-l-2 bg-white w-80" tabindex="-1" aria-labelledby="drawer-right-label">
+   <h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-900">修改产品</h5>
+   <button type="button" data-drawer-hide="form-product-edit" aria-controls="form-product-edit" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+   </button>
+
+   <form class="mb-6" action="./editProduct" method="POST">
+      <input type="hidden" id="form_product_edit_id" name="id_product" value="">
+      <div class="mb-6">
+         <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">图片上传</label>
+         <input name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="file_input" type="file">
+      </div>
+      <div class="mb-6">
+         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">产品名称</label>
+         <input type="text" id="form_product_edit_name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写类别名称" required>
+      </div>
+      <div class="mb-6">
+         <label for="price" class="block mb-2 text-sm font-medium text-gray-900">产品价格</label>
+         <input type="number" step="0.01" id="form_product_edit_price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" placeholder="请填写价格" required>
+      </div>
+      <div class="mb-6">
+         <label for="category" class="block mb-2 text-sm font-medium text-gray-900">选择产品类别</label>
+         <select disabled id="form_product_edit_category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" required>
+            <?php
+            foreach ($data['category'] as $key => $category) {
+            ?><option value="<?php echo $category->id_category ?>"><?php echo $category->name_category ?></option>
+            <?php
+            }
+            ?>
+         </select>
       </div>
       <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
          保存
@@ -108,13 +152,17 @@ $title = "菜单 - 后台界面";
 
 <!------------ Fin Flowbite Drawer ------------>
 
-<ul id="list_category" class="relative divide-y divide-gray-200 bg-white border-t-2 m-2 shadow-xl">
+<button id="btn_category_add" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 m-4 focus:outline-none" type="button" aria-controls="form-category-add">
+   添加新的类别
+</button>
+
+<ul id="list_category" data-accordion="open" class="relative divide-y divide-gray-200 bg-white border-t-2 m-2 shadow-xl">
    <?php
    foreach ($data['category'] as $key_category => $category) {
    ?>
-      <li id="li-category-<?php echo $category->id_category ?>" class="categorylist pb-2 sm:py-2">
-         <div id="li-category-heading-<?php echo $category->id_category ?>" class=" relative flex items-center space-x-4 cursor-pointer">
-            <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
+      <li id="li-category-<?php echo $category->id_category ?>" class="categorylist pb-2">
+         <div id="li-category-heading-<?php echo $category->id_category ?>" aria-expanded="true" data-accordion-target="#list-product-<?php echo $category->id_category ?>" class="relative flex items-center space-x-4 py-2 bg-white cursor-pointer">
+            <div onclick="event.stopPropagation()" class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                <i class="fa-solid fa-equals"></i>
             </div>
             <div>
@@ -130,7 +178,7 @@ $title = "菜单 - 后台界面";
             <button class="btn_edit_category" type="button" class="cursor-default" onclick="edit_category()" aria-controls="form-category-edit" data-drawer-hide="form-category-add">
                <i class="fa-solid fa-gear"></i>
             </button>
-            <div class="absolute text-gray-400 end-2 text-sm">
+            <div data-accordion-icon class="absolute text-gray-400 end-2 text-sm">
                <i class="fa-solid fa-chevron-down"></i>
             </div>
          </div>
@@ -139,15 +187,15 @@ $title = "菜单 - 后台界面";
             foreach ($data['product'][$key_category] as $key => $product) {
                if (!empty($product)) {
             ?>
-                  <li id="li_product_<?php echo $product->id_product ?>" class="pl-4 py-2 productList border-collapse border-t border-b relative flex items-center space-x-4 cursor-pointer hover:bg-gray-100">
+                  <li id="li_product_<?php echo $product->id_product ?>" onclick="edit_product()" class="pl-4 py-2 productList border-collapse border-t border-b relative flex items-center space-x-4 cursor-pointer hover:bg-gray-100">
                      <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                         <i class="fa-solid fa-equals"></i>
                      </div>
                      <div class="w-12 h-12 bg-blue-200">
                         <img src="" alt="" width="100%">
                      </div>
-                     <h4 class="text-sm font-medium text-gray-900"><?php echo $product->name_product ?></h4>
-                     <p class="text-xs"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>
+                     <h4 class="productName text-sm font-medium text-gray-900"><?php echo $product->name_product ?></h4>
+                     <p class="productPrice text-xs"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>
                   </li>
             <?php
                }
@@ -168,12 +216,9 @@ $title = "菜单 - 后台界面";
    <?php
    }
    ?>
-   <button id="btn_category_add" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 m-4 focus:outline-none" type="button" aria-controls="form-category-add">
-      添加新的类别
-   </button>
 </ul>
 
 
-<button id="save_order" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
+<button id="save_order" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 m-4 focus:outline-none">
    保存
 </button>

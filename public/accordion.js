@@ -19,15 +19,9 @@ categorylist.forEach(element => {
 // options with default values
 const optionsAccordion = {
     alwaysOpen: true,
-    activeClasses: 'text-gray-500 dark:text-gray-400',
-    inactiveClasses: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white',
+    activeClasses: 'text-black',
+    inactiveClasses: 'bg-red-100'
 };
 
-// instance options object
-const instanceOptions = {
-    id: 'accordion-example',
-    override: true
-};
-
-const accordion = new Accordion(accordionElement, accordionItems, optionsAccordion, instanceOptions);
+const accordion = new Accordion(accordionElement, accordionItems, optionsAccordion);
 // accordion.close('li-category-heading');

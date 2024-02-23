@@ -152,7 +152,7 @@ class HoutaiController extends Controller
                 $photo = htmlspecialchars($_POST['photo'], ENT_QUOTES);
                 $price = htmlspecialchars($_POST['price'], ENT_QUOTES);
                 $order = htmlspecialchars($_POST['order_product'], ENT_QUOTES);
-                $id_category = htmlspecialchars($_POST['id_category'], ENT_QUOTES);
+                $id_category = htmlspecialchars($_POST['category'], ENT_QUOTES);
 
                 $product = new Product();
                 $category = new Category();
@@ -164,6 +164,30 @@ class HoutaiController extends Controller
 
                 $productModel = new ProductModel();
                 $productModel->addProduct($product, $category);
+            }
+            $this->redirectedToRoute('houtai', 'menu');
+        } else {
+            $this->redirectedToRoute('houtai', 'login');
+        }
+    }
+
+    public function editProduct()
+    {
+        if (isset($_SESSION['name'])) {
+            if (Validator::validatePost($_POST, ['id_product', 'name', 'price'])) {
+                $id_product = htmlspecialchars($_POST['id_product'], ENT_QUOTES);
+                $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+                $photo = htmlspecialchars($_POST['photo'], ENT_QUOTES);
+                $price = htmlspecialchars($_POST['price'], ENT_QUOTES);
+
+                $product = new Product();
+                $product->setId_product($id_product);
+                $product->setName_product($name);
+                $product->setPhoto_product($photo);
+                $product->setPrice_product($price);
+
+                $productModel = new ProductModel();
+                $productModel->editProduct($product);
             }
             $this->redirectedToRoute('houtai', 'menu');
         } else {

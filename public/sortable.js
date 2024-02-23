@@ -5,9 +5,12 @@ list_product = document.querySelectorAll(".list_product");
 
 // Flowbite Drawers
 btn_category_add = document.querySelector("#btn_category_add");
+
 $form_category_add = document.querySelector("#form-category-add");
 $form_category_edit = document.querySelector("#form-category-edit");
 $form_product_add = document.querySelector("#form-product-add");
+$form_product_edit = document.querySelector("#form-product-edit");
+
 
 form_category_edit = document.querySelector("#form-category-edit");
 form_category_edit_id = document.querySelector("#form_category_edit_id");
@@ -17,7 +20,13 @@ form_category_edit_description = document.querySelector("#form_category_edit_des
 form_product_add_id_cat = document.querySelector("#form-product-add form #id_category");
 form_product_add_order_product = document.querySelector("#form-product-add form #order_product");
 form_product_add_select = document.querySelector("#form-product-add form select");
-form_product_add_option = document.querySelectorAll("#form-product-add form select option");
+
+form_product_edit_id = document.querySelector("#form_product_edit_id");
+form_product_edit_name = document.querySelector("#form_product_edit_name");
+// photo.............
+form_product_edit_price = document.querySelector("#form_product_edit_price");
+form_product_edit_category = document.querySelector("#form_product_edit_category");
+form_product_edit_order = document.querySelector("#form_product_edit_order");
 
 save_order = document.querySelector("#save_order");
 msg = document.querySelector("#msg");
@@ -30,12 +39,14 @@ const options = {
 const drawer_category_add = new Drawer($form_category_add, options);
 const drawer_category_edit = new Drawer($form_category_edit, options);
 const drawer_product_add = new Drawer($form_product_add, options);
+const drawer_product_edit = new Drawer($form_product_edit, options);
 
 // Ouvrir le formulaire d'ajout category et fermer les autres
 btn_category_add.addEventListener('click', () => {
     drawer_category_add.show();
     drawer_category_edit.hide();
     drawer_product_add.hide();
+    drawer_product_edit.hide();
 })
 
 // Rendre la liste category reorganisable avec SortableJS
@@ -63,6 +74,8 @@ function edit_category() {
     drawer_category_edit.show();
     drawer_category_add.hide();
     drawer_product_add.hide();
+    drawer_product_edit.hide();
+
     // Recuperer [id_category, name_category, description_category] de la categorie selectionnee
     id_category = event.target.parentElement.parentElement.parentElement.id.match(/\d+/);
     name_category = event.target.parentElement.parentElement.querySelector("#name_category").innerHTML;
@@ -81,16 +94,18 @@ function edit_category() {
 // Bouton d'ajout d'un nouveau produit (situant dans chaque liste Category)
 function add_product() {
     // Fermer les autres formulaires
-    drawer_product_add.show();
     drawer_category_add.hide();
     drawer_category_edit.hide();
+    drawer_product_add.show();
+    drawer_product_edit.hide();
+
     // Recuperer id (category) de la liste parent
-    id_category = event.target.parentElement.id.match(/\d+/);
+    id_category = event.target.parentElement.parentElement.id.match(/\d+/);
     // Modifier les inputs hidden [ id_category et order_product ] du formulaire form-product-add
     form_product_add_id_cat.value = id_category
-    order_product = event.target.parentElement.querySelectorAll(".list_product li").length + 1;
+    order_product = event.target.parentElement.parentElement.querySelectorAll(".list_product li").length + 1;
     form_product_add_order_product.value = order_product;
-    form_product_add_select.value = id_category;
+    form_product_add_select.value = id_category
 }
 
 // Lors d'un changement sur le select (choix de category) du formulaire form-product-add
@@ -98,7 +113,33 @@ form_product_add_select.addEventListener('change', () => {
     // Changer l'input hidden [ order_product ]
     order_product = list_product[form_product_add_select.value - 1].querySelectorAll(".list_product li").length + 1
     form_product_add_order_product.value = order_product;
+    console.log(list_product[form_product_add_select.value - 1]);
 })
+
+// Bouton de modification d'une categorie
+function edit_product() {
+    // Fermer les autres formulaires
+    event.stopPropagation();
+    drawer_category_edit.hide();
+    drawer_category_add.hide();
+    drawer_product_add.hide();
+    drawer_product_edit.show();
+
+    // Recuperer [id_category, name_category, description_category] de la categorie selectionnee
+    // id_category = event.target.parentElement.parentElement.parentElement.id.match(/\d+/);
+    // name_category = event.target.parentElement.parentElement.querySelector("#name_category").innerHTML;
+    // description_category = event.target.parentElement.parentElement.querySelector("#description_category");
+    id_product = event.target.id.match(/\d+/)[0];
+    name_product = event.target.querySelector(".productName").innerHTML;
+    price_product = event.target.querySelector(".productPrice").innerHTML.match(/\d+\.\d+/)[0]
+    id_category_product = event.target.parentElement.parentElement.id.match(/\d+/)[0]
+
+    // // Modifier les inputs du formulaire form-category-edit
+    form_product_edit_id.value = id_product
+    form_product_edit_name.value = name_product
+    form_product_edit_price.value = price_product
+    form_product_edit_category.value = id_category_product
+}
 
 // Bouton sauvegarder l'ordre des liste category et product
 save_order.addEventListener('click', (data) => {

@@ -36,6 +36,19 @@ class ProductModel extends Dbconnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+    public function editProduct(Product $product)
+    {
+        try {
+            $requete = $this->connection->prepare("UPDATE product SET name_product=:name_product, photo_product=:photo_product, price_product=:price_product WHERE id_product=:id_product");
+            $requete->bindValue(':id_product', $product->getId_product());
+            $requete->bindValue(':name_product', $product->getName_product());
+            $requete->bindValue(':photo_product', $product->getPhoto_product());
+            $requete->bindValue(':price_product', $product->getPrice_product());
+            $requete->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 
     public function orderProduct(Product $product)
     {
