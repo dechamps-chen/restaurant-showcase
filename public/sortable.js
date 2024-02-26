@@ -106,14 +106,15 @@ function add_product() {
     order_product = event.target.parentElement.parentElement.querySelectorAll(".list_product li").length + 1;
     form_product_add_order_product.value = order_product;
     form_product_add_select.value = id_category
+    console.log(order_product);
 }
 
 // Lors d'un changement sur le select (choix de category) du formulaire form-product-add
 form_product_add_select.addEventListener('change', () => {
-    // Changer l'input hidden [ order_product ]
-    order_product = list_product[form_product_add_select.value - 1].querySelectorAll(".list_product li").length + 1
+    // Changer l'input hidden [ order_product ] selon la categorie
+    order_product = document.querySelectorAll(`#list-product-${form_product_add_select.value} li`).length + 1
     form_product_add_order_product.value = order_product;
-    console.log(list_product[form_product_add_select.value - 1]);
+    console.log(order_product);
 })
 
 // Bouton de modification d'une categorie
