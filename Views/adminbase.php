@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?></title>
-    <link href="http://localhost/applications/projet-xbl/public/styles.css" type="text/css" rel="stylesheet">
-    <link href="http://localhost/applications/projet-xbl/public/output.css" type="text/css" rel="stylesheet">
+    <link href="../public/sortable.css" type="text/css" rel="stylesheet">
+    <link href="../public/output.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-white">
-                        <a href="http://localhost/applications/projet-xbl/houtai/logout"><button>注销</button></a>
+                        <a href="../houtai/logout"><button>注销</button></a>
                     </div>
                 </div>
             </div>
@@ -56,8 +56,8 @@
             <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50">
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a href="http://localhost/applications/projet-xbl/houtai" class="flex items-center p-2 pl-8 text-gray-900 border-l-4 group <?php if ($path == 'houtai/index') echo "border-gray-800 bg-gray-200 hover:bg-gray-100";
-                                                                                                                                                    else echo "border-gray-50 hover:bg-gray-100" ?>">
+                        <a href="../houtai/" class="flex items-center p-2 pl-8 text-gray-900 border-l-4 group <?php if ($path == 'houtai/index') echo "border-gray-800 bg-gray-200 hover:bg-gray-100";
+                                                                                                                else echo "border-gray-50 hover:bg-gray-100" ?>">
                             <svg class="w-5 h-5 transition duration-75 <?php if ($path == 'houtai/index') echo "text-gray-900 group-hover:text-gray-900";
                                                                         else echo "text-gray-500 group-hover:text-gray-700" ?>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                 <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -67,8 +67,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://localhost/applications/projet-xbl/houtai/menu" class="flex items-center p-2 pl-8 text-gray-900 border-l-4 group <?php if ($path == 'houtai/menu') echo "border-gray-800 border-l-4 bg-gray-200 hover:bg-gray-100";
-                                                                                                                                                        else echo "border-gray-50 hover:bg-gray-100" ?>">
+                        <a href="../houtai/menu" class="flex items-center p-2 pl-8 text-gray-900 border-l-4 group <?php if ($path == 'houtai/menu') echo "border-gray-800 border-l-4 bg-gray-200 hover:bg-gray-100";
+                                                                                                                    else echo "border-gray-50 hover:bg-gray-100" ?>">
                             <svg class="w-5 h-5 transition duration-75 <?php if ($path == 'houtai/menu') echo "text-gray-900 group-hover:text-gray-900";
                                                                         else echo "text-gray-500 group-hover:text-gray-700" ?>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                                 <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
@@ -91,10 +91,10 @@
         <p>© XBL 2024</p>
     </footer>
     <script src="https://kit.fontawesome.com/841ce7d4f6.js" crossorigin="anonymous"></script>
-    <script src="http://localhost/applications/projet-xbl/node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script src="http://localhost/applications/projet-xbl/public/sortable.js"></script>
-    <script src="http://localhost/applications/projet-xbl/public/accordion.js"></script>
+    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="../public/sortable.js"></script>
+    <script src="../public/accordion.js"></script>
 </body>
 
 </html>

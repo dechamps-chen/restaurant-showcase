@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?></title>
-    <link href="http://localhost/applications/projet-xbl/public/output.css" type="text/css" rel="stylesheet">
+    <link href="../projet-xbl/public/output.css" type="text/css" rel="stylesheet">
 </head>
 
 <body class="h-full relative">

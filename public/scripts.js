@@ -8,3 +8,16 @@ window.addEventListener('scroll', function () {
         nav.classList.remove('bg-gray-950');
     }
 });
+
+// Menu burger pour mobile
+const menuClose = document.querySelector('#menu-close');
+const menu = document.querySelector('#menu');
+const menuOpen = document.querySelector('#menu-open');
+
+menuClose.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+});
+
+menuOpen.addEventListener('click', function () {
+    menu.classList.toggle('hidden');
+});
