@@ -23,7 +23,7 @@ form_product_add_select = document.querySelector("#form-product-add form select"
 
 form_product_edit_id = document.querySelector("#form_product_edit_id");
 form_product_edit_name = document.querySelector("#form_product_edit_name");
-// photo.............
+form_product_edit_photo = document.querySelector("#form_product_edit_photo");
 form_product_edit_price = document.querySelector("#form_product_edit_price");
 form_product_edit_category = document.querySelector("#form_product_edit_category");
 form_product_edit_order = document.querySelector("#form_product_edit_order");
@@ -138,6 +138,7 @@ function edit_product() {
     // // Modifier les inputs du formulaire form-category-edit
     form_product_edit_id.value = id_product
     form_product_edit_name.value = name_product
+    form_product_edit_photo.value = "";
     form_product_edit_price.value = price_product
     form_product_edit_category.value = id_category_product
 }

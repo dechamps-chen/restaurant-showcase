@@ -44,12 +44,12 @@ $title = "菜单 - 后台界面";
       <span class="sr-only">Close menu</span>
    </button>
 
-   <form class="mb-6" action="./addProduct" method="POST">
+   <form class="mb-6" action="./addProduct" method="POST" enctype="multipart/form-data">
       <input type="hidden" id="id_category" name="id_category" value="">
       <input type="hidden" id="order_product" name="order_product" value="">
       <div class="mb-6">
-         <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">图片上传</label>
-         <input name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="file_input" type="file">
+         <label class="block mb-2 text-sm font-medium text-gray-900" for="photo">图片上传</label>
+         <input name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="photo" type="file">
       </div>
       <div class="mb-6">
          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">产品名称</label>
@@ -116,11 +116,11 @@ $title = "菜单 - 后台界面";
       <span class="sr-only">Close menu</span>
    </button>
 
-   <form class="mb-6" action="./editProduct" method="POST">
+   <form class="mb-6" action="./editProduct" method="POST" enctype="multipart/form-data">
       <input type="hidden" id="form_product_edit_id" name="id_product" value="">
       <div class="mb-6">
-         <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">图片上传</label>
-         <input name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="file_input" type="file">
+         <label class="block mb-2 text-sm font-medium text-gray-900" for="photo">图片上传</label>
+         <input name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="form_product_edit_photo" type="file">
       </div>
       <div class="mb-6">
          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">产品名称</label>
@@ -191,8 +191,14 @@ $title = "菜单 - 后台界面";
                      <div class="handle flex justify-center items-center text-gray-600 w-8 h-8 text-xs cursor-move">
                         <i class="fa-solid fa-equals"></i>
                      </div>
-                     <div class="w-12 h-12 bg-blue-200">
-                        <img src="" alt="" width="100%">
+                     <div class="w-12 h-12 bg-indigo-300">
+                        <?php
+                        if (!empty($product->photo_product)) {
+                        ?>
+                           <img class="object-cover w-12 h-12" src="<?php echo $product->photo_product ?>">
+                        <?php
+                        }
+                        ?>
                      </div>
                      <h4 class="productName text-sm font-medium text-gray-900"><?php echo $product->name_product ?></h4>
                      <p class="productPrice text-xs"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>

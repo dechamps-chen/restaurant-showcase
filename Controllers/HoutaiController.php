@@ -147,9 +147,28 @@ class HoutaiController extends Controller
     public function addProduct()
     {
         if (isset($_SESSION['name'])) {
+            if (!empty($_FILES['photo']['tmp_name'])) {
+                // Verifier qu'il s'agit d'une image
+                $check = getimagesize($_FILES["photo"]["tmp_name"]);
+                if ($check !== false) {
+                    // Generer un nom unique et stocke l'image
+                    $tempName = $_FILES['photo']['tmp_name'];
+                    $fileExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+                    $uniqueName = uniqid() . '.' . $fileExtension;
+                    $destinationPath = '../public/images/' . $uniqueName;
+
+                    if (move_uploaded_file($tempName, $destinationPath)) {
+                        $photo = $destinationPath;
+                    } else {
+                        echo "Failed to move the uploaded file.";
+                    }
+                } else {
+                    echo "Ce n'est pas une image !";
+                }
+            } else $photo = '';
+
             if (Validator::validatePost($_POST, ['name', 'price', 'id_category'])) {
                 $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
-                $photo = htmlspecialchars($_POST['photo'], ENT_QUOTES);
                 $price = htmlspecialchars($_POST['price'], ENT_QUOTES);
                 $order = htmlspecialchars($_POST['order_product'], ENT_QUOTES);
                 $id_category = htmlspecialchars($_POST['category'], ENT_QUOTES);
@@ -174,10 +193,29 @@ class HoutaiController extends Controller
     public function editProduct()
     {
         if (isset($_SESSION['name'])) {
+            if (!empty($_FILES['photo']['tmp_name'])) {
+                // Verifier qu'il s'agit d'une image
+                $check = getimagesize($_FILES["photo"]["tmp_name"]);
+                if ($check !== false) {
+                    // Generer un nom unique et stocke l'image
+                    $tempName = $_FILES['photo']['tmp_name'];
+                    $fileExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+                    $uniqueName = uniqid() . '.' . $fileExtension;
+                    $destinationPath = '../public/images/' . $uniqueName;
+
+                    if (move_uploaded_file($tempName, $destinationPath)) {
+                        $photo = $destinationPath;
+                    } else {
+                        echo "Failed to move the uploaded file.";
+                    }
+                } else {
+                    echo "Ce n'est pas une image !";
+                }
+            } else $photo = '';
+
             if (Validator::validatePost($_POST, ['id_product', 'name', 'price'])) {
                 $id_product = htmlspecialchars($_POST['id_product'], ENT_QUOTES);
                 $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
-                $photo = htmlspecialchars($_POST['photo'], ENT_QUOTES);
                 $price = htmlspecialchars($_POST['price'], ENT_QUOTES);
 
                 $product = new Product();
