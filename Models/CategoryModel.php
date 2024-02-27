@@ -40,6 +40,18 @@ class CategoryModel extends Dbconnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+
+    public function deleteCategory(Category $category)
+    {
+        try {
+            $requete = $this->connection->prepare("DELETE FROM category WHERE id_category=:id_category");
+            $requete->bindValue(':id_category', $category->getId_category());
+            $requete->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
+
     public function orderCategory(Category $category)
     {
         try {

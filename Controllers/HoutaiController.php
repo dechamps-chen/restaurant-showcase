@@ -92,6 +92,39 @@ class HoutaiController extends Controller
                 'product' => $productData
             ];
 
+            //
+            if (isset($_POST['editCategory'])) {
+                if (Validator::validatePost($_POST, ['name'])) {
+                    $id = htmlspecialchars($_POST['id'], ENT_QUOTES);
+                    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+                    $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
+                    $order = htmlspecialchars($_POST['order'], ENT_QUOTES);
+
+                    $category = new Category();
+                    $category->setId_category($id);
+                    $category->setName_category($name);
+                    $category->setDescription_category($description);
+                    $category->setOrder_category($order);
+
+                    $categoryModel = new CategoryModel();
+                    $categoryModel->editCategory($category);
+                    unset($_POST['addCategory']);
+                }
+                $this->redirectedToRoute('houtai', 'menu');
+            } elseif (isset($_POST['deleteCategory'])) {
+                if (Validator::validatePost($_POST, ['id'])) {
+                    $id = htmlspecialchars($_POST['id'], ENT_QUOTES);
+
+                    $category = new Category();
+                    $category->setId_category($id);
+
+                    $categoryModel = new CategoryModel();
+                    $categoryModel->deleteCategory($category);
+                    unset($_POST['deleteCategory']);
+                }
+                $this->redirectedToRoute('houtai', 'menu');
+            }
+
             $this->render('houtai/menu', $data);
         } else {
             $this->redirectedToRoute('houtai', 'login');

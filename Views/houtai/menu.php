@@ -86,7 +86,7 @@ $title = "菜单 - 后台界面";
       <span class="sr-only">Close menu</span>
    </button>
 
-   <form class="mb-6" action="./editCategory" method="POST">
+   <form class="mb-6" action="" method="POST">
       <input type="hidden" id="form_category_edit_id" name="id">
       <input type="hidden" id="form_category_edit_order" name="order">
       <div class="mb-6">
@@ -97,10 +97,10 @@ $title = "菜单 - 后台界面";
          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">类别介绍</label>
          <textarea id="form_category_edit_description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500" placeholder="请填写类别介绍"></textarea>
       </div>
-      <button type="submit" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
+      <button type="submit" name="editCategory" class="text-white justify-center flex items-center bg-gray-800 hover:bg-gray-900 w-full focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
          保存
       </button>
-      <button type="button" class="text-white justify-center flex items-center bg-red-700 hover:bg-red-600 w-full focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
+      <button type="submit" name="deleteCategory" class="text-white justify-center flex items-center bg-red-700 hover:bg-red-600 w-full focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none">
          删除
       </button>
    </form>
