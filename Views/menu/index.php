@@ -4,63 +4,56 @@ $title = "Menu - Meet Noodle";
 
 ?>
 
-<div class="bg-gray-900 h-96 pt-20">
-    <p class="text-white">MENU</p>
+<div class="bg-gray-900 pt-20">
+    <h2 class="text-center text-2xl text-amber-300 font-bold">Menu</h2>
 
-    <div id="accordion-collapse" data-accordion="collapse">
-        <h2 id="accordion-collapse-heading-1">
-            <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-                <span>What is Flowbite?</span>
-                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                </svg>
-            </button>
-        </h2>
-        <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
-            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
-            </div>
-        </div>
-        <h2 id="accordion-collapse-heading-2">
-            <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-                <span>Is there a Figma file available?</span>
-                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                </svg>
-            </button>
-        </h2>
-        <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
-            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
-                <p class="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classes from Tailwind CSS and components from Flowbite.</p>
-            </div>
-        </div>
-        <h2 id="accordion-collapse-heading-3">
-            <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-                <span>What are the differences between Flowbite and Tailwind UI?</span>
-                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                </svg>
-            </button>
-        </h2>
-        <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
-            <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-                <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                    <li><a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
-                    <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <ul data-accordion="open" class="relative m-2 space-y-2">
+        <?php
+        foreach ($data['category'] as $key_category => $category) {
+        ?>
+            <li class="space-y-2">
+                <div id="li-category-heading-<?php echo $category->id_category ?>" aria-expanded="true" data-accordion-target="#list-product-<?php echo $category->id_category ?>" class="relative flex justify-between py-2 mx-4 space-x-4 border-dotted border-b-2 bg-gray-900 cursor-pointer">
+                    <div class="h-10">
+                        <h3 id="name_category" class="text-sm font-medium text-amber-300"><?php echo $category->name_category ?></h3>
+                        <?php
+                        if (!empty($category->description_category)) {
+                        ?>
+                            <p id="description_category" class="text-xs text-white"><?php echo $category->description_category ?></p>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div data-accordion-icon class="flex px-4 items-center text-amber-300 text-sm">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div id="list-product-<?php echo $category->id_category ?>" class="flex flex-wrap flex-row justify-between mx-4">
+                    <?php
+                    foreach ($data['product'][$key_category] as $key => $product) {
+                        if (!empty($product)) {
+                    ?>
+                            <div class="relative group flex flex-col justify-center items-center h-72 z-0 mb-10 basis-full bg-gray-950 lg:h-80 lg:basis-[32%] md:basis-[48%] md:mx-0">
+                                <?php
+                                if (!empty($product->photo_product)) {
+                                ?>
+                                    <img class="absolute object-cover object-center w-full h-full -z-10" src="<?php echo './/' . $product->photo_product ?>">
+                                <?php
+                                }
+                                ?>
+                                <div class="absolute inset-0 bg-black opacity-50 duration-300 -z-10 group-hover:opacity-0"></div>
+                                <h4 class="text-sm font-medium text-white group-hover:hidden"><?php echo $product->name_product ?></h4>
+                                <p class=" text-xs text-white group-hover:hidden"><?php echo number_format($product->price_product, 2, '.', '') . "€" ?></p>
+                            </div>
+                    <?php
+                        }
+                    }
+
+                    ?>
+                </div>
+            </li>
+        <?php
+        }
+        ?>
+    </ul>
 
 </div>
-
-<?php
-
-var_dump($data);
-
-?>

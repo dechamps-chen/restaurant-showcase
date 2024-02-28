@@ -8,7 +8,7 @@
     <link href="./public/output.css" rel="stylesheet">
 </head>
 
-<body class="relative">
+<body class="relative flex flex-col min-h-screen bg-gray-900">
     <header class="fixed inset-x-0 top-0 z-50">
         <nav id="nav" class="flex items-center justify-between p-6 duration-300 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
@@ -27,8 +27,8 @@
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
                 <a href="./menu" class="text-sm font-semibold leading-6 text-white">Menu</a>
-                <a href="#horaires" class="text-sm font-semibold leading-6 text-white">Horaires</a>
-                <a href="#contact" class="text-sm font-semibold leading-6 text-white">Contact</a>
+                <a href="./home#horaires" class="text-sm font-semibold leading-6 text-white">Horaires</a>
+                <a href="./home#contact" class="text-sm font-semibold leading-6 text-white">Contact</a>
             </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
@@ -52,8 +52,8 @@
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
                             <a href="./menu" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Menu</a>
-                            <a href="#horaires" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Horaires</a>
-                            <a href="#contact" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Contact</a>
+                            <a href="./home#horaires" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Horaires</a>
+                            <a href="./home#contact" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -65,10 +65,11 @@
         <?php echo $content ?>
     </main>
 
-    <footer class="text-center">
-        <p>© XBL 2024</p>
+    <footer class="text-end text-white py-2 mr-2 mt-auto">
+        <p>© Meet Noodle 2024</p>
     </footer>
 
+    <script src="https://kit.fontawesome.com/841ce7d4f6.js" crossorigin="anonymous"></script>
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="./public/scripts.js"></script>
 </body>
