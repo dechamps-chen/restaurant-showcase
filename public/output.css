@@ -1828,10 +1828,6 @@ input:checked + .toggle-bg {
   overflow: hidden;
 }
 
-.overflow-scroll {
-  overflow: scroll;
-}
-
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -2426,6 +2422,11 @@ input:checked + .toggle-bg {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
+.content-\[\'a\'\] {
+  --tw-content: 'a';
+  content: var(--tw-content);
+}
+
 .placeholder\:text-gray-400::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -2850,6 +2851,26 @@ input:checked + .toggle-bg {
   .lg\:py-56 {
     padding-top: 14rem;
     padding-bottom: 14rem;
+  }
+
+  .lg\:content-\[\'a\'\] {
+    --tw-content: 'a';
+    content: var(--tw-content);
+  }
+
+  .lg\:after\:basis-\[32\%\]::after {
+    content: var(--tw-content);
+    flex-basis: 32%;
+  }
+
+  .lg\:after\:content-\[\'a\'\]::after {
+    --tw-content: 'a';
+    content: var(--tw-content);
+  }
+
+  .lg\:after\:content-\[\'\'\]::after {
+    --tw-content: '';
+    content: var(--tw-content);
   }
 }
 

@@ -27,7 +27,7 @@ $title = "Menu - Meet Noodle";
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <div id="list-product-<?php echo $category->id_category ?>" class="flex flex-wrap flex-row justify-between mx-4">
+                <div id="list-product-<?php echo $category->id_category ?>" class="flex flex-wrap flex-row justify-between items-center lg:after:content-[''] lg:after:basis-[32%] mx-4">
                     <?php
                     foreach ($data['product'][$key_category] as $key => $product) {
                         if (!empty($product)) {
