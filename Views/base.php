@@ -8,7 +8,7 @@
     <link href="./public/output.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="relative">
     <header class="fixed inset-x-0 top-0 z-50">
         <nav id="nav" class="flex items-center justify-between p-6 duration-300 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
