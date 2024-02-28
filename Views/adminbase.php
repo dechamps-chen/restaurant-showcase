@@ -95,6 +95,7 @@
     <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="../public/sortable.js"></script>
     <script src="../public/accordion.js"></script>
+    <script src="../public/deleteConfirm.js"></script>
 </body>
 
 </html>
