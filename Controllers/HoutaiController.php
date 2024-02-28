@@ -118,6 +118,21 @@ class HoutaiController extends Controller
                     $category = new Category();
                     $category->setId_category($id);
 
+                    // 
+                    $productModel = new ProductModel();
+                    $productList = $productModel->getProductByCategory($category);
+
+                    $product = new Product();
+                    foreach ($productList as $p) {
+                        $product->setId_product($p->id_product);
+
+                        // Supprimer la photo depuis le fichier si elle existe
+                        if ($p->photo_product != '') {
+                            unlink(dirname(__FILE__) . '/' . $p->photo_product);
+                        }
+                        $productModel->deleteProduct($product);
+                    }
+
                     $categoryModel = new CategoryModel();
                     $categoryModel->deleteCategory($category);
                     unset($_POST['deleteCategory']);
