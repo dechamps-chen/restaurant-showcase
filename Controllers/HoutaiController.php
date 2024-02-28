@@ -125,6 +125,56 @@ class HoutaiController extends Controller
                 $this->redirectedToRoute('houtai', 'menu');
             }
 
+            // editProduct
+            if (isset($_POST['editProduct'])) {
+                if (!empty($_FILES['photo']['tmp_name'])) {
+                    // Verifier qu'il s'agit d'une image
+                    $check = getimagesize($_FILES["photo"]["tmp_name"]);
+                    if ($check !== false) {
+                        // Generer un nom unique et stocke l'image
+                        $tempName = $_FILES['photo']['tmp_name'];
+                        $fileExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+                        $uniqueName = uniqid() . '.' . $fileExtension;
+                        $destinationPath = '../public/images/' . $uniqueName;
+
+                        if (move_uploaded_file($tempName, $destinationPath)) {
+                            $photo = $destinationPath;
+                        } else {
+                            echo "Failed to move the uploaded file.";
+                        }
+                    } else {
+                        echo "Ce n'est pas une image !";
+                    }
+                } else $photo = '';
+
+                if (Validator::validatePost($_POST, ['id_product', 'name', 'price'])) {
+                    $id_product = htmlspecialchars($_POST['id_product'], ENT_QUOTES);
+                    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+                    $price = htmlspecialchars($_POST['price'], ENT_QUOTES);
+
+                    $product = new Product();
+                    $product->setId_product($id_product);
+                    $product->setName_product($name);
+                    $product->setPhoto_product($photo);
+                    $product->setPrice_product($price);
+
+                    $productModel = new ProductModel();
+                    $productModel->editProduct($product);
+                }
+                $this->redirectedToRoute('houtai', 'menu');
+            } elseif (isset($_POST['deleteProduct'])) {
+                if (Validator::validatePost($_POST, ['id_product'])) {
+                    $id = htmlspecialchars($_POST['id_product'], ENT_QUOTES);
+                    $product = new Product();
+                    $product->setId_product($id);
+
+                    $productModel = new ProductModel();
+                    $productModel->deleteProduct($product);
+                    unset($_POST['deleteProduct']);
+                }
+                $this->redirectedToRoute('houtai', 'menu');
+            }
+
             $this->render('houtai/menu', $data);
         } else {
             $this->redirectedToRoute('houtai', 'login');
@@ -146,30 +196,6 @@ class HoutaiController extends Controller
 
                 $categoryModel = new CategoryModel();
                 $categoryModel->addCategory($category);
-            }
-            $this->redirectedToRoute('houtai', 'menu');
-        } else {
-            $this->redirectedToRoute('houtai', 'login');
-        }
-    }
-
-    public function editCategory()
-    {
-        if (isset($_SESSION['name'])) {
-            if (Validator::validatePost($_POST, ['name'])) {
-                $id = htmlspecialchars($_POST['id'], ENT_QUOTES);
-                $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
-                $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
-                $order = htmlspecialchars($_POST['order'], ENT_QUOTES);
-
-                $category = new Category();
-                $category->setId_category($id);
-                $category->setName_category($name);
-                $category->setDescription_category($description);
-                $category->setOrder_category($order);
-
-                $categoryModel = new CategoryModel();
-                $categoryModel->editCategory($category);
             }
             $this->redirectedToRoute('houtai', 'menu');
         } else {
@@ -216,49 +242,6 @@ class HoutaiController extends Controller
 
                 $productModel = new ProductModel();
                 $productModel->addProduct($product, $category);
-            }
-            $this->redirectedToRoute('houtai', 'menu');
-        } else {
-            $this->redirectedToRoute('houtai', 'login');
-        }
-    }
-
-    public function editProduct()
-    {
-        if (isset($_SESSION['name'])) {
-            if (!empty($_FILES['photo']['tmp_name'])) {
-                // Verifier qu'il s'agit d'une image
-                $check = getimagesize($_FILES["photo"]["tmp_name"]);
-                if ($check !== false) {
-                    // Generer un nom unique et stocke l'image
-                    $tempName = $_FILES['photo']['tmp_name'];
-                    $fileExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
-                    $uniqueName = uniqid() . '.' . $fileExtension;
-                    $destinationPath = '../public/images/' . $uniqueName;
-
-                    if (move_uploaded_file($tempName, $destinationPath)) {
-                        $photo = $destinationPath;
-                    } else {
-                        echo "Failed to move the uploaded file.";
-                    }
-                } else {
-                    echo "Ce n'est pas une image !";
-                }
-            } else $photo = '';
-
-            if (Validator::validatePost($_POST, ['id_product', 'name', 'price'])) {
-                $id_product = htmlspecialchars($_POST['id_product'], ENT_QUOTES);
-                $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
-                $price = htmlspecialchars($_POST['price'], ENT_QUOTES);
-
-                $product = new Product();
-                $product->setId_product($id_product);
-                $product->setName_product($name);
-                $product->setPhoto_product($photo);
-                $product->setPrice_product($price);
-
-                $productModel = new ProductModel();
-                $productModel->editProduct($product);
             }
             $this->redirectedToRoute('houtai', 'menu');
         } else {

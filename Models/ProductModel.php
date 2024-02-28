@@ -54,6 +54,17 @@ class ProductModel extends Dbconnect
         }
     }
 
+    public function deleteProduct(Product $product)
+    {
+        try {
+            $requete = $this->connection->prepare("DELETE FROM product WHERE id_product=:id_product");
+            $requete->bindValue(':id_product', $product->getId_product());
+            $requete->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
+
     public function orderProduct(Product $product)
     {
         try {
