@@ -4,7 +4,7 @@ $title = "Meet Noodle";
 
 ?>
 
-<div id="home" class="relative z-0">
+<div id="home" class="relative z-0 overflow-hidden">
     <div class="absolute inset-0 bg-black opacity-50 -z-10">1</div>
     <div class="absolute inset-0 bg-cover bg-center bg-[url('../public/home.jpg')] -z-20"></div>
     <div class="relative inset-0 w-screen h-screen px-6 pt-14 lg:px-8">
@@ -19,9 +19,9 @@ $title = "Meet Noodle";
         </div>
     </div>
 </div>
-<div id="horaires">
+<div id="horaires" class="text-white">
     <p>Horaires</p>
 </div>
-<div id="contact">
+<div id="contact" class="text-white" s>
     <p>Contact</p>
 </div>
