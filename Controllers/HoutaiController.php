@@ -169,6 +169,11 @@ class HoutaiController extends Controller
                     $product->setId_product($id);
 
                     $productModel = new ProductModel();
+                    // Supprimer la photo depuis le fichier si elle existe
+                    $p = $productModel->getPhotoByProductId($product);
+                    if ($p->photo_product != '') {
+                        unlink(dirname(__FILE__) . '/' . $p->photo_product);
+                    }
                     $productModel->deleteProduct($product);
                     unset($_POST['deleteProduct']);
                 }

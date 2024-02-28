@@ -65,6 +65,19 @@ class ProductModel extends Dbconnect
         }
     }
 
+    public function getPhotoByProductId(Product $product)
+    {
+        try {
+            $requete = $this->connection->prepare("SELECT photo_product FROM product WHERE id_product=:id_product");
+            $requete->bindValue(':id_product', $product->getId_product());
+            $requete->execute();
+            $result = $requete->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
+
     public function orderProduct(Product $product)
     {
         try {
