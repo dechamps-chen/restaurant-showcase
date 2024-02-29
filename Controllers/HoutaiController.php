@@ -152,6 +152,20 @@ class HoutaiController extends Controller
                         $uniqueName = uniqid() . '.' . $fileExtension;
                         $destinationPath = '../public/images/' . $uniqueName;
 
+                        // Supprimer la photo depuis le fichier si elle existe
+                        if (Validator::validatePost($_POST, ['id_product'])) {
+                            $id = htmlspecialchars($_POST['id_product'], ENT_QUOTES);
+                            $product = new Product();
+                            $product->setId_product($id);
+                            $p = $productModel->getPhotoByProductId($product);
+                            if ($p->photo_product != '') {
+                                if (file_exists(dirname(__FILE__) . '/' . $p->photo_product)) {
+                                    unlink(dirname(__FILE__) . '/' . $p->photo_product);
+                                }
+                            }
+                        }
+
+                        // Upload d'image
                         if (move_uploaded_file($tempName, $destinationPath)) {
                             $photo = $destinationPath;
                         } else {
