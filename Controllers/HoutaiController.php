@@ -128,7 +128,9 @@ class HoutaiController extends Controller
 
                         // Supprimer la photo depuis le fichier si elle existe
                         if ($p->photo_product != '') {
-                            unlink(dirname(__FILE__) . '/' . $p->photo_product);
+                            if (file_exists(dirname(__FILE__) . '/' . $p->photo_product)) {
+                                unlink(dirname(__FILE__) . '/' . $p->photo_product);
+                            }
                         }
                         $productModel->deleteProduct($product);
                     }
@@ -201,7 +203,9 @@ class HoutaiController extends Controller
                     // Supprimer la photo depuis le fichier si elle existe
                     $p = $productModel->getPhotoByProductId($product);
                     if ($p->photo_product != '') {
-                        unlink(dirname(__FILE__) . '/' . $p->photo_product);
+                        if (file_exists(dirname(__FILE__) . '/' . $p->photo_product)) {
+                            unlink(dirname(__FILE__) . '/' . $p->photo_product);
+                        }
                     }
                     $productModel->deleteProduct($product);
                     unset($_POST['deleteProduct']);
